@@ -1,0 +1,89 @@
+<section class="grid">
+  <article class="card">
+    <h2>Registrar ubicacion favorita</h2>
+
+    <form class="form" (ngSubmit)="createFavorite()">
+      <label for="favoriteName">Nombre</label>
+      <input
+        id="favoriteName"
+        type="text"
+        name="favoriteName"
+        [(ngModel)]="favoriteName"
+        placeholder="Ej: Museo del Oro"
+      />
+
+      <label for="favoriteLatitude">Latitud</label>
+      <input
+        id="favoriteLatitude"
+        type="number"
+        name="favoriteLatitude"
+        [(ngModel)]="favoriteLatitude"
+        step="any"
+        placeholder="4.5981"
+      />
+
+      <label for="favoriteLongitude">Longitud</label>
+      <input
+        id="favoriteLongitude"
+        type="number"
+        name="favoriteLongitude"
+        [(ngModel)]="favoriteLongitude"
+        step="any"
+        placeholder="-74.0760"
+      />
+
+      <button type="submit" [disabled]="createLoading">
+        {{ createLoading ? 'Guardando...' : 'Guardar favorita' }}
+      </button>
+    </form>
+
+    @if (createdFavorite) {
+      <div class="result">
+        <p><strong>Guardada:</strong> {{ createdFavorite.name }} (ID {{ createdFavorite.id }})</p>
+        <p><strong>Coordenadas:</strong> {{ createdFavorite.latitude }}, {{ createdFavorite.longitude }}</p>
+      </div>
+    }
+
+    @if (errorMessage) {
+      <p class="alert">{{ errorMessage }}</p>
+    }
+  </article>
+
+  <article class="card">
+    <div class="card-header">
+      <h2>Ubicaciones favoritas</h2>
+      <button type="button" (click)="loadFavorites()" [disabled]="listLoading">
+        {{ listLoading ? 'Actualizando...' : 'Refrescar' }}
+      </button>
+    </div>
+
+    @if (favorites.length === 0 && !listLoading) {
+      <p class="hint">No hay ubicaciones favoritas registradas aun.</p>
+    }
+
+    @if (favorites.length > 0) {
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Latitud</th>
+              <th>Longitud</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (location of favorites; track trackByFavoriteId($index, location)) {
+              <tr>
+                <td>{{ location.id }}</td>
+                <td>{{ location.name }}</td>
+                <td>{{ location.latitude }}</td>
+                <td>{{ location.longitude }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  </article>
+</section>

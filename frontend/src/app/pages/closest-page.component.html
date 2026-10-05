@@ -1,0 +1,42 @@
+<section class="card">
+  <h2>Tres ubicaciones mas cercanas</h2>
+
+  <form class="form" (ngSubmit)="searchClosestLocations()">
+    <label for="closestCity">Ciudad</label>
+    <input
+      id="closestCity"
+      type="text"
+      name="closestCity"
+      [(ngModel)]="city"
+      placeholder="Ej: Medellin"
+    />
+    <button type="submit" [disabled]="loading">
+      {{ loading ? 'Buscando...' : 'Buscar cercanas' }}
+    </button>
+  </form>
+
+  @if (errorMessage) {
+    <p class="alert">{{ errorMessage }}</p>
+  }
+
+  @if (result) {
+    <p class="hint">Ciudad consultada: {{ result.city }}</p>
+
+    @if (result.closest_locations.length === 0) {
+      <p class="hint">No se encontraron ubicaciones favoritas para calcular cercania.</p>
+    }
+
+    @if (result.closest_locations.length > 0) {
+      <ol class="closest-list">
+        @for (location of result.closest_locations; track trackByFavoriteId($index, location)) {
+          <li>
+            <strong>{{ location.name }}</strong>
+            <span>
+              ID {{ location.id }} | {{ location.latitude }}, {{ location.longitude }} | {{ location.distance_km }} km
+            </span>
+          </li>
+        }
+      </ol>
+    }
+  }
+</section>

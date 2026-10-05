@@ -1,0 +1,54 @@
+:host {
+  display: block;
+  min-height: 100dvh;
+  color: #102330;
+  background:
+    radial-gradient(circle at 10% 10%, #d9f6f5 0%, transparent 45%),
+    radial-gradient(circle at 90% 5%, #ffe4c9 0%, transparent 40%),
+    linear-gradient(165deg, #f5fbff 0%, #eff6ff 100%);
+  font-family: 'Public Sans', 'Segoe UI', sans-serif;
+}
+
+.page {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 2.2rem 1rem 2.8rem;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  letter-spacing: 0.02em;
+}
+
+.hero p {
+  margin: 0.4rem 0 0;
+  color: #305167;
+}
+
+.nav {
+  margin-top: 1.1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #15445d;
+  background: #ffffff;
+  border: 1px solid #bfd6e7;
+  border-radius: 999px;
+  padding: 0.5rem 0.9rem;
+  font-weight: 600;
+}
+
+.nav a.active {
+  background: linear-gradient(135deg, #006e90, #0a9988);
+  color: #f6fdff;
+  border-color: transparent;
+}
+
+.content {
+  margin-top: 1rem;
+}

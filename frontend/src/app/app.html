@@ -1,0 +1,16 @@
+<main class="page">
+  <header class="hero">
+    <h1>Monolito Geolocalizacion</h1>
+    <p>Angular + Django REST con rutas por funcionalidad.</p>
+  </header>
+
+  <nav class="nav">
+    <a routerLink="/coordinates" routerLinkActive="active">Coordenadas</a>
+    <a routerLink="/favorites" routerLinkActive="active">Favoritas</a>
+    <a routerLink="/closest" routerLinkActive="active">Mas cercanas</a>
+  </nav>
+
+  <section class="content">
+    <router-outlet />
+  </section>
+</main>

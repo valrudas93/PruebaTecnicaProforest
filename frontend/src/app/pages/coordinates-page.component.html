@@ -1,0 +1,23 @@
+<section class="card">
+  <h2>Coordenadas por ciudad</h2>
+
+  <form class="form" (ngSubmit)="searchCoordinates()">
+    <label for="city">Ciudad</label>
+    <input id="city" type="text" name="city" [(ngModel)]="city" placeholder="Ej: Bogota" />
+    <button type="submit" [disabled]="loading">
+      {{ loading ? 'Consultando...' : 'Consultar coordenadas' }}
+    </button>
+  </form>
+
+  @if (errorMessage) {
+    <p class="alert">{{ errorMessage }}</p>
+  }
+
+  @if (result) {
+    <div class="result">
+      <p><strong>Ciudad:</strong> {{ result.city }}</p>
+      <p><strong>Latitud:</strong> {{ result.latitude }}</p>
+      <p><strong>Longitud:</strong> {{ result.longitude }}</p>
+    </div>
+  }
+</section>
